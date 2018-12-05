@@ -20,8 +20,8 @@ const user = {
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
     },
-    SET_ROLES: (state, role) => {
-      state.roles = [role]
+    SET_ROLES: (state, roles) => {
+      state.roles = roles
     }
   },
 
@@ -49,8 +49,8 @@ const user = {
         getInfo(state.token).then(response => {
           const data = response.data
           console.log(data)
-          if (data.role) {
-            commit('SET_ROLES', data.role)
+          if (data.roles) {
+            commit('SET_ROLES', data.roles)
           } else {
             reject('getInfo: roles must be a non-null array !')
           }
