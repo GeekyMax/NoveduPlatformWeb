@@ -24,162 +24,127 @@ import Layout from '../views/layout/Layout'
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
-
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
-    name: 'Dashboard',
+    redirect: '/homepage',
+    name: 'Homepage',
     hidden: true,
     children: [{
-      path: 'dashboard',
+      path: 'homepage',
       component: () => import('@/views/dashboard/index')
     }]
-  },
-
-  {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
-      }
-    ]
-  },
-
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
-      }
-    ]
   },
 
   { path: '*', redirect: '/404', hidden: true }
 ]
 
+export const studentRouterMap = [
+  { path: '/login', component: () => import('@/views/login/index'), hidden: true },
+  { path: '/404', component: () => import('@/views/404'), hidden: true },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/homepage',
+    children: [
+      {
+        path: 'homepage',
+        name: 'Homepage',
+        component: () => import('@/views/homepage/index'),
+        meta: { title: '我的首页', icon: 'form', inClass: false }
+      }
+    ]
+  },
+  {
+    path: '/reminder',
+    redirect: '/reminder/index',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Reminder',
+        component: () => import('@/views/form/index'),
+        meta: { title: '事项', icon: 'form', inClass: false }
+      }
+    ]
+  },
+  {
+    path: '/schedule',
+    redirect: '/schedule/index',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Schedule',
+        component: () => import('@/views/form/index'),
+        meta: { title: '日程表', icon: 'form', inClass: false }
+      }
+    ]
+  },
+  {
+    path: '/class/:id',
+    component: Layout,
+    redirect: '/class/:id/index',
+    name: 'Class',
+    meta: { title: '我的课程', icon: 'form', inClass: true },
+    alwaysShow: true,
+    children: [
+      {
+        path: 'index',
+        name: 'ClassHomepage',
+        component: () => import('@/views/form/index'),
+        meta: { title: '课程首页', icon: 'form', inClass: true }
+      }, {
+        path: 'information',
+        name: 'ClassInformation',
+        component: () => import('@/views/form/index'),
+        meta: { title: '课程信息', icon: 'form', inClass: true }
+      },
+      {
+        path: 'team',
+        name: 'ClassTeam',
+        component: () => import('@/views/form/index'),
+        meta: { title: '我的组队', icon: 'form', inClass: true }
+
+      },
+      {
+        path: 'forum',
+        name: 'classForum',
+        component: () => import('@/views/form/index'),
+        meta: { title: '课程论坛', icon: 'form', inClass: true }
+      },
+      {
+        path: 'homework',
+        name: 'classHomework',
+        component: () => import('@/views/form/index'),
+        meta: { title: '课程作业', icon: 'form', inClass: true }
+      },
+      {
+        path: 'resource',
+        name: 'ClassResource',
+        component: () => import('@/views/form/index'),
+        meta: { title: '课程资源', icon: 'form', inClass: true }
+
+      }
+    ]
+  },
+  {
+    path: '/navigation',
+    component: Layout,
+    redirect: '/navigation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/form/index'),
+        meta: { title: '网站导航', icon: 'link', inClass: false }
+      }
+    ]
+  },
+  { path: '*', redirect: '/404', hidden: true }
+
+]
 export default new Router({
   // mode: 'history', //后端支持可开
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
+  routes: studentRouterMap
 })
-
-export const asyncRouterMap = [
-  {
-    path: '/permission',
-    component: Layout,
-    redirect: '/permission/index',
-    alwaysShow: true, // will always show the root menu
-    meta: {
-      title: 'permission',
-      icon: 'lock',
-      roles: ['ADMIN'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'page',
-        component: () => import('@/views/form'),
-        name: 'PagePermission',
-        meta: {
-          title: 'pagePermission',
-          roles: ['ADMIN'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'directive',
-        component: () => import('@/views/form'),
-        name: 'DirectivePermission',
-        meta: {
-          title: 'directivePermission'
-          // if do not set roles, means: this page does not require permission
-        }
-      }
-    ]
-  }
-]

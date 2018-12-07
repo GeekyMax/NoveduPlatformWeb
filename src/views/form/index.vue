@@ -42,12 +42,14 @@
       <el-form-item>
         <el-button type="primary" @click="onSubmit">Create</el-button>
         <el-button @click="onCancel">Cancel</el-button>
+        <el-button @click="onJoinInClazz">Join</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
+import store from '@/store'
 export default {
   data() {
     return {
@@ -72,6 +74,23 @@ export default {
         message: 'cancel!',
         type: 'warning'
       })
+    },
+    onJoinInClazz() {
+      if (!store.getters.inClazz) {
+        console.log('hello')
+        store.dispatch('JoinClazz', '11111111').then(() => {
+          console.log('test')
+          console.log(store.getters.inclazz)
+          this.$router.push({ path: '/' })
+        })
+      } else {
+        console.log('hello2')
+        store.dispatch('LeaveClazz').then(() => {
+          console.log('test')
+          console.log(store.getters.inclazz)
+          this.$router.push({ path: '/' })
+        })
+      }
     }
   }
 }

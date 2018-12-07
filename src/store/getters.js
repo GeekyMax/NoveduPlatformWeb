@@ -5,7 +5,12 @@ const getters = {
   avatar: state => state.user.avatar,
   name: state => state.user.name,
   roles: state => state.user.roles,
-  permission_routers: state => state.permission.routers,
-  addRouters: state => state.permission.addRouters
+  permission_routers: state => state.permission.showRouters,
+  addRouters: state => state.permission.addRouters,
+  show_routers: state => state.permission.showRouters,
+  clazzId: state => state.clazz.clazzId,
+  inClazz: state => state.clazz.inClazz,
+  classId: state => state.clazz.classId,
+  className: state => state.clazz.className
 }
 export default getters

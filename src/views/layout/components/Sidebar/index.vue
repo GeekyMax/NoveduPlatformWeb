@@ -10,7 +10,7 @@
       active-text-color="#409EFF"
     >
       <!--读取store中的permission_routers来加载sidebar-->
-      <sidebar-item v-for="route in permission_routers" :key="route.path" :item="route" :base-path="route.path"/>
+      <sidebar-item v-for="route in show_routers" :key="route.path" :item="route" :base-path="route.path"/>
     </el-menu>
   </el-scrollbar>
 </template>
@@ -24,7 +24,7 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'permission_routers'
+      'show_routers'
     ]),
     // 用这个似乎效果不对
     routes() {

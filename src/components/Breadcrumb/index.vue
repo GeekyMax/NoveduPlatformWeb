@@ -11,7 +11,7 @@
 
 <script>
 import pathToRegexp from 'path-to-regexp'
-
+import store from '@/store/index'
 export default {
   data() {
     return {
@@ -28,15 +28,18 @@ export default {
   },
   methods: {
     getBreadcrumb() {
-      let matched = this.$route.matched.filter(item => {
+      const matched = this.$route.matched.filter(item => {
         if (item.name) {
+          if (item.name === 'Class') {
+            item.meta.title = store.getters.className
+          }
           return true
         }
       })
-      const first = matched[0]
-      if (first && first.name !== 'dashboard') {
-        matched = [{ path: '/dashboard', meta: { title: 'Dashboard' }}].concat(matched)
-      }
+      // const first = matched[0]
+      // if (first && first.name !== 'homepage') {
+      //   matched = [{ path: '/', meta: { title: 'Novedu' }}].concat(matched)
+      // }
       this.levelList = matched
     },
     pathCompile(path) {
