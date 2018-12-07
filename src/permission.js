@@ -48,7 +48,9 @@ router.beforeEach((to, from, next) => {
       const id = to.path.split('/')[2]
       if (id !== from.params.id) {
         store.dispatch('GetClassInfo', id).then(() => {
-          next()
+          store.dispatch('UpdateRoutesWithClassName', store.getters.className).then(() => {
+            next()
+          })
         })
       }
     }
@@ -64,8 +66,9 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to, from) => {
-  if (to.path.startsWith('/class')) {
-    store.dispatch('SetClassId', { id: to.params.id })
-  }
+  // if (to.path.startsWith('/class')) {
+  //   store.dispatch('SetClassId', { id: to.params.id })
+  // }
+  // store.dispatch('UpdateRoutesWithClassName', store.getters.className)
   NProgress.done() // 结束Progress
 })
