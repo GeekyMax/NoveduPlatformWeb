@@ -10,7 +10,7 @@ const getters = {
   show_routers: state => state.permission.showRouters,
   clazzId: state => state.clazz.clazzId,
   inClazz: state => state.clazz.inClazz,
-  classId: state => state.clazz.classId,
+  classId: state => state.clazz.clazzId,
   className: state => state.clazz.className
 }
 export default getters

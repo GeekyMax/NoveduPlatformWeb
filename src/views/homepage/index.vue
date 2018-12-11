@@ -1,8 +1,8 @@
 <template>
   <div class="my-class-container">
     <el-row :gutter="20">
-      <el-col :span="8">
-        <el-card class="box-card">
+      <el-col :xs="24" :sm="12" :md="12" :lg="8">
+        <el-card class="box-card" shadow="hover">
           <div slot="header" class="clearfix">
             <span>课程列表</span>
             <el-button style="float: right; padding: 3px 0" type="text">查看更多</el-button>
@@ -12,8 +12,8 @@
           </div>
         </el-card>
       </el-col>
-      <el-col :span="8">
-        <el-card class="box-card">
+      <el-col :xs="24" :sm="12" :md="12" :lg="8">
+        <el-card class="box-card clock-card" shadow="hover">
           <div style="margin-bottom: 18px;height: 160px;">
             <geeky-clock/>
           </div>
@@ -68,7 +68,8 @@ export default {
   }
   .box-card {
     /*width: 480px;*/
-    min-width: 240px;
+    margin-bottom: 20px;
+    /*min-width: 240px;*/
   }
   .text {
     font-size: 15px;
@@ -86,5 +87,8 @@ export default {
   .clearfix:after {
     clear: both
   }
-
+  .clock-card {
+    height:140px;
+    /*min-width:320px;*/
+  }
 </style>

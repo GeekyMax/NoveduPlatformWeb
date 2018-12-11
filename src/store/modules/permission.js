@@ -96,6 +96,16 @@ const permission = {
         commit('SET_CLASS_ID', id)
         resolve()
       })
+    },
+    UpdateRoutesWithClassName({ commit, state }, className) {
+      return new Promise(resolve => {
+        state.showRouters.forEach(route => {
+          if (route.name === 'Class') {
+            route.meta.title = className
+          }
+        })
+        resolve()
+      })
     }
   }
 }

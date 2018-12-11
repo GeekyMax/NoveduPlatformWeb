@@ -101,14 +101,14 @@ export const studentRouterMap = [
         meta: { title: '课程信息', icon: 'form', inClass: true }
       },
       {
-        path: 'team',
+        path: 'classTeam',
         name: 'ClassTeam',
         component: () => import('@/views/form/index'),
         meta: { title: '我的组队', icon: 'form', inClass: true }
 
       },
       {
-        path: 'forum',
+        path: 'classForum',
         name: 'classForum',
         component: () => import('@/views/form/index'),
         meta: { title: '课程论坛', icon: 'form', inClass: true }
@@ -122,7 +122,7 @@ export const studentRouterMap = [
       {
         path: 'resource',
         name: 'ClassResource',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/classResource/index'),
         meta: { title: '课程资源', icon: 'form', inClass: true }
 
       }

@@ -65,7 +65,7 @@ export default {
 
   .geeky-clock .time {
     letter-spacing: 0.05em;
-    font-size: 80px;
+    font-size: 60px;
     padding: 5px 0;
   }
 

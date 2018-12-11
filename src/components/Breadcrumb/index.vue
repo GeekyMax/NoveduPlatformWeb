@@ -11,7 +11,7 @@
 
 <script>
 import pathToRegexp from 'path-to-regexp'
-import store from '@/store/index'
+// import store from '@/store/index'
 export default {
   data() {
     return {
@@ -30,9 +30,9 @@ export default {
     getBreadcrumb() {
       const matched = this.$route.matched.filter(item => {
         if (item.name) {
-          if (item.name === 'Class') {
-            item.meta.title = store.getters.className
-          }
+          // if (item.name === 'Class') {
+          //   item.meta.title = store.getters.className
+          // }
           return true
         }
       })
