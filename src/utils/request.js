@@ -6,7 +6,7 @@ import { getToken } from '@/utils/auth'
 // 创建axios实例
 const service = axios.create({
   // baseURL: 'http://api.geekymax.com', // api 的 base_url
-  baseURL: 'http://api.geekymax.com', // api 的 base_url
+  baseURL: 'http://localhost:8080', // api 的 base_url
   timeout: 5000 // 请求超时时间
 })
 
@@ -29,7 +29,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     /**
-     * code为非20000是抛错 可结合自己业务进行修改
+     * code为非200是抛错 可结合自己业务进行修改
      */
     const res = response.data
     console.log(response)

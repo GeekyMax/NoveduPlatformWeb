@@ -21,11 +21,11 @@
       @ready="playerReadied"/>
     <el-upload
       ref="upload"
-      :data="uploadData"
       :on-preview="handlePreview"
       :on-remove="handleRemove"
       :file-list="fileList"
       :auto-upload="false"
+      :data="uploadData"
       :headers="headers"
       name="file"
       class="upload-demo"
