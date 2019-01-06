@@ -63,7 +63,7 @@ export default {
         sources: [{
           type: 'video/mp4',
           // src: 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm'
-          src: 'http://localhost:8080/resources/ce2cfac1fc5611e8973400163e043b02'
+          src: 'http://api.novedu.cn/resources/ce2cfac1fc5611e8973400163e043b02'
         }]
       }
     }

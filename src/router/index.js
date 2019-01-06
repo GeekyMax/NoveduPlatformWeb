@@ -116,7 +116,7 @@ export const studentRouterMap = [
       {
         path: 'homework',
         name: 'classHomework',
-        component: () => import('@/views/classHomework/student'),
+        component: () => import('@/views/classHomework/teacher'),
         meta: { title: '课程作业', icon: 'form', inClass: true }
       },
       {

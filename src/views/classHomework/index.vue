@@ -1,96 +1,118 @@
 <template>
-  <el-upload
-    ref="upload"
-    :on-preview="handlePreview"
-    :on-change="fileChange"
-    :on-remove="handleRemove"
-    :file-list="fileList"
-    :auto-upload="false"
-    :data="uploadData"
-    :headers="headers"
-    name="file"
-    class="upload-demo">
-    <el-input v-model="title" placeholder="请输入title"/>
-    <el-input v-model="content" placeholder="请输入content"/>
-    <el-input v-model="notice" placeholder="请输入notice"/>
-    <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-    <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload" >上传到服务器</el-button>
-  </el-upload>
+  <div :id="id"/>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import 'video.js/dist/video-js.css'
-import $store from '@/store'
-import { uploadHomework1 } from '@/api/homework'
+// deps for editor
+import 'codemirror/lib/codemirror.css' // codemirror
+import 'tui-editor/dist/tui-editor.css' // editor ui
+import 'tui-editor/dist/tui-editor-contents.css' // editor content
+
+import Editor from 'tui-editor'
+import defaultOptions from './defaultOptions'
+
 export default {
+  name: 'MarddownEditor',
+  props: {
+    value: {
+      type: String,
+      default: ''
+    },
+    id: {
+      type: String,
+      required: false,
+      default() {
+        return 'markdown-editor-' + +new Date() + ((Math.random() * 1000).toFixed(0) + '')
+      }
+    },
+    options: {
+      type: Object,
+      default() {
+        return defaultOptions
+      }
+    },
+    mode: {
+      type: String,
+      default: 'markdown'
+    },
+    height: {
+      type: String,
+      required: false,
+      default: '300px'
+    },
+    language: {
+      type: String,
+      required: false,
+      default: 'en_US' // https://github.com/nhnent/tui.editor/tree/master/src/js/langs
+    }
+  },
   data() {
     return {
-      uploadData: {
-        clazzId: $store.getters.clazzId
-      },
-      title: '',
-      content: '',
-      notice: '',
-      fileList: [],
-      files: []
+      editor: null
     }
   },
   computed: {
-    headers() {
-      return {
-        'X-NOV-TOKEN': this.$store.getters.token
+    editorOptions() {
+      const options = Object.assign({}, defaultOptions, this.options)
+      options.initialEditType = this.mode
+      options.height = this.height
+      options.language = this.language
+      return options
+    }
+  },
+  watch: {
+    value(newValue, preValue) {
+      if (newValue !== preValue && newValue !== this.editor.getValue()) {
+        this.editor.setValue(newValue)
       }
     },
-    ...mapGetters([
-      'clazzId',
-      'token'
-    ])
+    language(val) {
+      this.destroyEditor()
+      this.initEditor()
+    },
+    height(newValue) {
+      this.editor.height(newValue)
+    },
+    mode(newValue) {
+      this.editor.changeMode(newValue)
+    }
   },
   mounted() {
-    console.log('this is current player instance object', this.player)
+    this.initEditor()
+  },
+  destroyed() {
+    this.destroyEditor()
   },
   methods: {
-    fileChange(file) {
-      console.log('on change')
-      console.log(file)
-      this.files.push(file.raw)
-    },
-    submitUpload() {
-      const formData = new FormData()
-      this.files.forEach(file => {
-        formData.append('files', file)
+    initEditor() {
+      this.editor = new Editor({
+        el: document.getElementById(this.id),
+        ...this.editorOptions
+      })
+      if (this.value) {
+        this.editor.setValue(this.value)
       }
-      )
-      formData.append('title', this.title)
-      formData.append('content', this.content)
-      formData.append('notice', this.notice)
-      uploadHomework1(formData)
+      this.editor.on('change', () => {
+        this.$emit('input', this.editor.getValue())
+      })
     },
-    handleRemove(file, fileList) {
-      console.log(file, fileList)
+    destroyEditor() {
+      if (!this.editor) return
+      this.editor.off('change')
+      this.editor.remove()
     },
-    handlePreview(file) {
-      console.log(file)
+    setValue(value) {
+      this.editor.setValue(value)
     },
-    upload(param) {
-      console.log('param')
-      console.log(param)
-      const formData = new FormData()
-      this.files.forEach(file => {
-        formData.append('files', file)
-      }
-      )
-      formData.append('title', this.title)
-      formData.append('content', this.content)
-      formData.append('notice', this.notice)
-      uploadHomework1(formData)
+    getValue() {
+      return this.editor.getValue()
+    },
+    setHtml(value) {
+      this.editor.setHtml(value)
+    },
+    getHtml() {
+      return this.editor.getHtml()
     }
   }
 }
-
 </script>
-
-<style scoped>
-
-</style>
