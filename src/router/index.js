@@ -32,7 +32,7 @@ export const constantRouterMap = [
     hidden: true,
     children: [{
       path: 'homepage',
-      component: () => import('@/views/dashboard/index')
+      component: () => import('@/views/homepage/index')
     }]
   },
 
@@ -63,7 +63,7 @@ export const studentRouterMap = [
       {
         path: 'index',
         name: 'Reminder',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/notification/student'),
         meta: { title: '事项', icon: 'form', inClass: false }
       }
     ]
@@ -76,7 +76,7 @@ export const studentRouterMap = [
       {
         path: 'index',
         name: 'Schedule',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/homepage/student'),
         meta: { title: '日程表', icon: 'form', inClass: false }
       }
     ]
@@ -92,37 +92,37 @@ export const studentRouterMap = [
       {
         path: 'index',
         name: 'ClassHomepage',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/class/student'),
         meta: { title: '课程首页', icon: 'form', inClass: true }
       }, {
         path: 'information',
         name: 'ClassInformation',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/classInformation/student'),
         meta: { title: '课程信息', icon: 'form', inClass: true }
       },
       {
         path: 'classTeam',
         name: 'ClassTeam',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/classTeam/student'),
         meta: { title: '我的组队', icon: 'form', inClass: true }
 
       },
       {
         path: 'classForum',
         name: 'classForum',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/classForum/index'),
         meta: { title: '课程论坛', icon: 'form', inClass: true }
       },
       {
         path: 'homework',
         name: 'classHomework',
-        component: () => import('@/views/classHomework/index'),
+        component: () => import('@/views/classHomework/student'),
         meta: { title: '课程作业', icon: 'form', inClass: true }
       },
       {
         path: 'resource',
         name: 'ClassResource',
-        component: () => import('@/views/classResource/index'),
+        component: () => import('@/views/classResource/student'),
         meta: { title: '课程资源', icon: 'form', inClass: true }
 
       }
@@ -135,7 +135,7 @@ export const studentRouterMap = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/form/index'),
+        component: () => import('@/views/navigation/index'),
         meta: { title: '网站导航', icon: 'link', inClass: false }
       }
     ]
